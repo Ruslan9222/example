@@ -17,6 +17,7 @@ public class Animal {
     private int age;
     private String gender;
     private int weight;
+    private SwitchCase switchCase;
 
 
 //    Enable Full Line suggestions
