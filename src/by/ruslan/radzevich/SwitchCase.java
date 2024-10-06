@@ -17,6 +17,7 @@ public class SwitchCase {
        }
 
         System.out.println();
+        System.out.println();
 
 
         System.out.println("hello world");
