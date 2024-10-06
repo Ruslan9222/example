@@ -24,6 +24,7 @@ public class Animal {
         this.age = age;
         this.gender = gender;
         this.weight = weight;
+        this.firstName = firstName;
     }
 
     public String getName() {
