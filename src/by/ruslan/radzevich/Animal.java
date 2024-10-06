@@ -28,6 +28,10 @@ public class Animal {
     public String getName() {
         return name;
     }
+
+    public int getWeight() {
+        return weight;
+    }
     //    Enable Full Line suggestions
 
 
