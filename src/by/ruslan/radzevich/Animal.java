@@ -30,9 +30,11 @@ public class Animal {
     public String getName() {
         return name;
     }
-
+ future_for_future_relase
+    public void setName(String name) {
+        this.name = name;
     public int getWeight() {
-        return weight;
+        return weight;master
     }
     //    Enable Full Line suggestions
 

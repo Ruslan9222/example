@@ -15,7 +15,12 @@ public class SwitchCase {
            case 5 -> System.out.println("5");
            default -> System.out.println("default");
        }
+ future_for_future_relase
+        System.out.println();
+
+
         System.out.println("hello world");
+ master
     }
 
 
