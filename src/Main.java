@@ -1,5 +1,5 @@
-import by.ruslan.radzevich.Animal;
-import by.ruslan.radzevich.SwitchCase;
+import by.ruslan.radzevich.cycle.Animal;
+import by.ruslan.radzevich.cycle.SwitchCase;
 
 
 public class Main {
