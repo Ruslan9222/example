@@ -1,4 +1,4 @@
-package by.ruslan.radzevich.cycle;
+package by.ruslan.radzevich;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import java.util.Objects;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
+
 
 public class Animal {
     private String name;
@@ -18,8 +18,17 @@ public class Animal {
     private String gender;
     private int weight;
 
+    public Animal(String name, int age, String gender, int weight) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.weight = weight;
+    }
 
-//    Enable Full Line suggestions
+    public String getName() {
+        return name;
+    }
+    //    Enable Full Line suggestions
 
 
 
