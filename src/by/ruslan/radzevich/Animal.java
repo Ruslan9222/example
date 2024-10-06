@@ -25,6 +25,9 @@ public class Animal {
         this.weight = weight;
     }
 
+    public String getName() {
+        return name;
+    }
     //    Enable Full Line suggestions
 
 
