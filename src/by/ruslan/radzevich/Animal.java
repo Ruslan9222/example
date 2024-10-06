@@ -17,16 +17,22 @@ public class Animal {
     private int age;
     private String gender;
     private int weight;
+    private String firstName;
 
     public Animal(String name, int age, String gender, int weight) {
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.weight = weight;
+        this.firstName = firstName;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getWeight() {
+        return weight;
     }
     //    Enable Full Line suggestions
 
