@@ -1,4 +1,4 @@
-package by.ruslan.radzevich.cycle;
+package by.ruslan.radzevich;
 
 import java.util.Scanner;
 
