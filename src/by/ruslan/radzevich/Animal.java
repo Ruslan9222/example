@@ -17,6 +17,7 @@ public class Animal {
     private int age;
     private String gender;
     private int weight;
+    private String firstName;
 
     public Animal(String name, int age, String gender, int weight) {
         this.name = name;
