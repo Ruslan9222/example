@@ -15,8 +15,9 @@ public class SwitchCase {
            case 5 -> System.out.println("5");
            default -> System.out.println("default");
        }
-
+        System.out.println("hello world");
     }
+
 
 
 }
