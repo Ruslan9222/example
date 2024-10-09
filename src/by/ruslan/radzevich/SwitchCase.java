@@ -16,6 +16,7 @@ public class SwitchCase {
            default -> System.out.println("default");
        }
         System.out.println("1");
+        System.out.println("2");
     }
 
 
