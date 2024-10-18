@@ -21,11 +21,11 @@ public class SwitchCase {
         System.out.println("4");
         System.out.println("9");
         System.out.println("10");
+        System.out.println("11");
+        System.out.println("13");
         System.out.println("12");
         System.out.println("fix");
         System.out.println("fix");
- branch
-
 
 
     }
