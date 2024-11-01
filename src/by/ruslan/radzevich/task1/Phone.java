@@ -1,9 +1,13 @@
 package by.ruslan.radzevich.task1;
 
 import lombok.Getter;
+import lombok.Setter;
 
+
+
+@Setter
 @Getter
-public class Phone implements ReceiveCall{
+public class Phone implements ReceiveCall {
     private String model;
     private int number;
     private int weight;
@@ -13,7 +17,6 @@ public class Phone implements ReceiveCall{
         this.number = number;
         this.weight = weight;
     }
-
 
 
     @Override

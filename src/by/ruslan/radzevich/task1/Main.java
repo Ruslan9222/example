@@ -6,6 +6,9 @@ public class Main {
         Phone phone1 = new Phone("Iphone", 2222222, 269);
         Phone phone2 = new Phone("Iphone", 3333333, 785);
 
+
+        System.out.println(phone);
+        phone.setNumber(12365477);
         System.out.println(phone);
         System.out.println(phone1);
         System.out.println(phone2);
