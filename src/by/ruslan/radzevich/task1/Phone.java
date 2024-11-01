@@ -35,12 +35,5 @@ public class Phone implements ReceiveCall{
     public void receiveCall(String name) {
         System.out.println("Call" + " " + name + " " + getNumber());
     }
-//
-//    public void receiveCall(String name) {
-//        System.out.println("Call" + " " + name + " " + getNumber());
-//    }
-//
-//    public void receiveCall(String name, int number) {
-//        System.out.println("Call" + " " + number + " " + name);
-//    }
+
 }
