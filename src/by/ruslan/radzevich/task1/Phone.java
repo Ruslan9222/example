@@ -3,7 +3,7 @@ package by.ruslan.radzevich.task1;
 import lombok.Getter;
 
 @Getter
-public class Phone {
+public class Phone implements ReceiveCall{
     private String model;
     private int number;
     private int weight;
@@ -25,11 +25,22 @@ public class Phone {
                 '}';
     }
 
+    @Override
+    public void receiveCall(String name, int number) {
+        System.out.println("Call" + " " + number + " " + name);
+
+    }
+
+    @Override
     public void receiveCall(String name) {
         System.out.println("Call" + " " + name + " " + getNumber());
     }
-
-    public void receiveCall(String name, int number) {
-        System.out.println("Call" + " " + number + " " + name);
-    }
+//
+//    public void receiveCall(String name) {
+//        System.out.println("Call" + " " + name + " " + getNumber());
+//    }
+//
+//    public void receiveCall(String name, int number) {
+//        System.out.println("Call" + " " + number + " " + name);
+//    }
 }
