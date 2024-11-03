@@ -1,4 +1,4 @@
-package by.ruslan.radzevich;
+package by.ruslan.radzevich.task1;
 
 import java.util.Scanner;
 

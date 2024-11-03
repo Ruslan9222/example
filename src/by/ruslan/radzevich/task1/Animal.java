@@ -1,11 +1,8 @@
-package by.ruslan.radzevich;
+package by.ruslan.radzevich.task1;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Objects;
 
 @Setter
 @Getter
