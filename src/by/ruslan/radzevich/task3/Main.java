@@ -3,6 +3,7 @@ package by.ruslan.radzevich.task3;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,6 +20,7 @@ public class Main {
         Optional<Integer> yearOptional = studentList.stream()
                 .flatMap(student -> student.getBooks().stream())
                 .map(Book::getYearOfRelease)
+                .filter(year -> year.equals(2020))
                 .findAny();
 
 
