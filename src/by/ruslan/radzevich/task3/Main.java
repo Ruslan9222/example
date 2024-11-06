@@ -2,8 +2,6 @@ package by.ruslan.radzevich.task3;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,17 +15,13 @@ public class Main {
 
         System.out.println(studentList);
 
-        Optional<Integer> yearOptional = studentList.stream()
+        studentList.stream()
                 .flatMap(student -> student.getBooks().stream())
                 .map(Book::getYearOfRelease)
                 .filter(year -> year.equals(2020))
-                .findAny();
+                .findAny().ifPresentOrElse(year -> System.out.println("Год выпуска книги: " + year),
+                        () -> System.out.println("Книга с таким годом выпуска отсутствует"));
 
-
-        yearOptional.ifPresentOrElse(
-                year -> System.out.println("Год выпуска книги: " + year),
-                () -> System.out.println("Книга с таким годом выпуска отсутствует")
-        );
 
     }
 }
