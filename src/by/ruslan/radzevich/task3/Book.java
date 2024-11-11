@@ -1,8 +1,6 @@
 package by.ruslan.radzevich.task3;
 
-
 import lombok.Getter;
-
 
 @Getter
 public final class Book {
