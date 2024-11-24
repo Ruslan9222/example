@@ -7,6 +7,7 @@ public class SingletonExample {
 
     }
 
+
     public static SingletonExample getInstance() {
         if (instance == null) {
             instance = new SingletonExample();
@@ -14,7 +15,7 @@ public class SingletonExample {
         return instance;
     }
 
-    public void getMessage(){
+    public void getMessage() {
         System.out.println("Hello Singleton");
     }
 }
