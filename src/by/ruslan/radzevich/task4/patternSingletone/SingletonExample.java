@@ -7,6 +7,22 @@ public class SingletonExample {
 
     }
 
+
+    public static SingletonExample getInstance() {
+        if (instance == null) {
+            instance = new SingletonExample();
+        }
+        return instance;
+    }
+
+
+
+
+
+
+
+
+
     public static SingletonExample getInstance() {
         if (instance == null) {
             instance = new SingletonExample();
