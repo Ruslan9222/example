@@ -7,7 +7,28 @@ import java.util.stream.Collectors;
 public class Collection {
     public static void main(String[] args) {
 
-        //    сделать списоктолько с началом фруктор на А
+
+
+
+
+
+        //Отфильтровать города, которые начинаются на букву "М".
+//
+//Преобразовать названия в верхний регистр.
+//
+//Отсортировать их по длине в порядке убывания.
+//
+//Собрать в список.
+        List<String> cities = List.of("Москва", "Минск", "Берлин", "Париж", "Мадрид");
+        System.out.println(cities.stream()
+                .filter(el -> el.startsWith("М"))
+                .map(el -> el.toUpperCase())
+                .sorted((el1, el2) -> Integer.compare(el1.length(), el2.length()))// по длине строки
+                .sorted((el1,el2)->el2.compareTo(el1)) // это вывод записей в алфавитном порядке
+                .toList());
+
+
+        //    сделать список только с началом фруктор на А
 
 
         List<String> words = List.of("Apple", "Banana", "Avocado", "Cherry", "Apricot");
@@ -22,7 +43,7 @@ public class Collection {
 
         System.out.println(people.stream()
 //                .sorted((age1, age2) -> Integer.compare(age2.age, age1.age))
-                        .sorted((el1, el2)->el1.name().compareTo(el2.name()))
+                .sorted((el1, el2) -> el1.name().compareTo(el2.name()))
                 .toList());
 
 
@@ -32,11 +53,11 @@ public class Collection {
         List<String> animals = List.of("cat", "dog", "lion", "tiger", "elephant");
         Map<Integer, List<String>> grooping = animals.stream()
                 .collect(Collectors.groupingBy(el -> el.length()));
+
         System.out.println(grooping);
 
 
     }
-
 
     public static List<String> result(List<String> strings) {
         return strings.stream()
