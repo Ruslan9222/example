@@ -42,15 +42,29 @@ public class leetCode2 {
 
     public static int[] invertMassive(int[] nums) {
         Arrays.sort(nums);
-        if(nums.length==0){
-           throw new RuntimeException();
+        if (nums.length == 0) {
+            throw new RuntimeException();
         }
-        for (int i = 0; i < nums.length/2; i++) {
+        for (int i = 0; i < nums.length / 2; i++) {
             int temp = nums[i];
             nums[i] = nums[nums.length - 1 - i];
             nums[nums.length - 1 - i] = temp;
         }
         return nums;
+    }
+
+    public static boolean canFormArithmeticProgression(int[] arr) {
+        Arrays.sort(arr); // Сортируем массив
+
+        int difference = arr[1] - arr[0]; // Вычисляем разность между первыми двумя элементами
+
+        for (int i = 2; i < arr.length; i++) {
+            if (arr[i] - arr[i - 1] != difference) {
+                return false; // Если разность отличается, возвращаем false
+            }
+        }
+
+        return true; // Если данное условие выполнено для каждого элемента, возвращаем true
     }
 
 

@@ -1,5 +1,8 @@
 package by.ruslan.radzevich.task7;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LeetCode1 {
 
 //    Даны массив целых чисел и целое число , возвращают индексы двух чисел так, что их сумма равна целевому значению.numstarget
@@ -34,4 +37,21 @@ public class LeetCode1 {
 
         return null;
     }
+
+    public static int[] twoSum2(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>(); // Создаём хеш-карту, где ключ — значение числа, а значение — его индекс
+
+        for (int i = 0; i < nums.length; i++) {      // Проходим по каждому элементу массива
+            int complement = target - nums[i];       // Ищем "недостающее" число до target: target = nums[i] + complement
+
+            if (map.containsKey(complement)) {       // Если в карте уже есть нужное число...
+                return new int[]{map.get(complement), i}; // ...возвращаем пару индексов: индекс complement и текущий i
+            }
+
+            map.put(nums[i], i);                     // Иначе добавляем текущее число в карту с его индексом
+        }
+
+        return null; // Если пара не найдена, возвращаем null
+    }
+
 }
