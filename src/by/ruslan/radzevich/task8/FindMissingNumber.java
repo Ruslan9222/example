@@ -1,7 +1,5 @@
 package by.ruslan.radzevich.task8;
 
-import java.util.Arrays;
-
 /**
  * Дан массив из N элементов, содержащий уникальные последовательные числа от 1 до N,
  * <p>
