@@ -1,0 +1,297 @@
+Задача 1 — Фильтрация списка
+
+Дан список строк. Вывести все строки длиной больше 5 символов.
+
+List<String> strings = List.of("apple", "banana", "pear", "pineapple", "kiwi");
+
+-----------
+Задача 2 — Преобразование элементов
+
+Дан список чисел. Возвести каждое число в квадрат и вывести результат.
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+
+-----------
+Задача 3 — Поиск первого подходящего элемента
+
+Найти первую строку, начинающуюся с буквы «A».
+
+List<String> strings = List.of("Apple", "banana", "Avocado", "cherry");
+
+-----------
+Задача 4  — Уникальные элементы
+
+Вывести уникальные числа из списка с повторами.
+
+List<Integer> numbers = List.of(1, 2, 2, 3, 4, 4, 5);
+
+
+-----------
+Задача 5  — Группировка по длине
+
+Сгруппировать слова по длине.
+
+List<String> words = List.of("apple", "banana", "pear", "fig", "plum");
+
+
+-----------
+Задача 6  — Преобразование в Map
+
+Из списка пользователей создать Map\<id, имя>.
+
+record User(int id, String name) {}
+
+List<User> users = List.of(
+    new User(1, "Alice"),
+    new User(2, "Bob"),
+    new User(3, "Charlie")
+);
+
+----------
+Задача 7  — Пропустить и взять
+
+Пропустить первые 3 строки и взять следующие 5.
+
+List<String> strings = List.of("a", "b", "c", "d", "e", "f", "g");
+
+
+-----------
+Задача 8  — Группировка с подсчетом и фильтрацией
+
+Есть список заказов `Order` с полями `customerId` (int) и `amount` (double).
+Нужно сгруппировать суммы заказов по клиентам, но учитывать только заказы с суммой больше 100. Вернуть Map\<customerId, totalAmount>.
+
+record Order(int customerId, double amount) {}
+
+List<Order> orders = List.of(
+    new Order(1, 120),
+    new Order(2, 50),
+    new Order(1, 80),
+    new Order(3, 200),
+    new Order(2, 150)
+);
+
+-----------
+Задача 9 — Сложное плоское преобразование с фильтрацией
+
+Есть список `Person` с полем `List<String> phoneNumbers`.
+Нужно получить список уникальных телефонных номеров, которые начинаются с «+7».
+
+record Person(String name, List<String> phoneNumbers) {}
+
+List<Person> people = List.of(
+    new Person("Alice", List.of("+7123456789", "+123456789")),
+    new Person("Bob", List.of("+7987654321", "+7123456789")),
+    new Person("Charlie", List.of("+123123123"))
+);
+-----------
+Задача 10  — Сортировка по нескольким полям и лимит
+
+Есть список `Product` с `name` и `price`.
+Отсортировать по убыванию цены, если цена совпадает — по алфавиту названия. Взять топ-3 самых дорогих.
+
+record Product(String name, double price) {}
+
+List<Product> products = List.of(
+    new Product("Pen", 1.50),
+    new Product("Notebook", 5.75),
+    new Product("Book", 12.99),
+    new Product("Pencil", 1.50),
+    new Product("Eraser", 0.99)
+);
+
+-----------
+Задача 11  — Сложная агрегация с Optional и reduce
+
+Дан список чисел. Нужно найти произведение всех чисел больше 2. Если таких нет — вернуть 1.
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+-----------
+Задача 12
+
+/**
+     * Calculates the number of employees with salary >= threshold (only for 111- departments)
+     *
+     * @param departments are list of departments
+     * @param threshold is lower edge of salary
+     *
+     * @return the number of employees
+     */
+    public static long calcNumberOfEmployees(List<Department> departments, long threshold) {
+         // write your code here
+    }
+
+    public static void main(String[] args) {
+        List<Department> departments = List.of(
+                new Department("dep-1", "111-1", List.of(
+                        new Employee("William", 15000L),
+                        new Employee("Sophia", 22000L),
+                        new Employee("John", 20000L)
+                )),
+                new Department("dep-2", "222-1", List.of(
+                        new Employee("Victor", 25000L)
+                ))
+        );
+        System.out.println(calcNumberOfEmployees(departments, 20000L));
+    }
+}
+
+class Employee {
+    private final String name;
+    private final Long salary;
+
+    public Employee(String name, Long salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getSalary() {
+        return salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", salary=" + salary +
+                '}';
+    }
+}
+
+class Department {
+    private final String name;
+    private final String code;
+    private final List<Employee> employees;
+
+    public Department(String name, String code, List<Employee> employees) {
+        this.name = name;
+        this.code = code;
+        this.employees = employees;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", employees=" + employees +
+                '}';
+    }
+
+---------
+Задача 13
+class Reader{
+    private int id;
+    private String name;
+    private List<Book> books;
+
+    public Reader(int id, String name, List<Book> books) {
+        this.id = id;
+        this.name = name;
+        this.books = books;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    @Override
+    public String toString() {
+        return "Reader{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", books=" + books +
+                '}';
+    }
+}
+
+class Book{
+    private int id;
+    private String name;
+
+    public Book(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
+
+public class Task5WithBooks {
+    public static void main(String[] args) {
+        Book book1 = new Book(1, "111");
+        Book book2 = new Book(2, "222");
+        Book book3 = new Book(3, "333");
+        Book book4 = new Book(4, "444");
+
+        Reader reader1 = new Reader(1, "reader1", List.of(book1, book4));
+        Reader reader2 = new Reader(2, "reader2", List.of(book2, book3));
+        Reader reader3 = new Reader(3, "reader3", List.of(book2, book4));
+        Reader reader4 = new Reader(4, "reader4", List.of(book3, book4, book2));
+
+        List<Reader> readers = List.of(reader1, reader2,reader3,reader4);
+        System.out.println(findReadersByBookName(readers, "333"));
+
+    }
+    //вернуть читателей у которых книга с некоторым названием
+    private static List<Reader> findReadersByBookName(List<Reader> readers,String bookName){
+
+    }
+}
+
+
+-----
+Задача 14
+/*Написать программу для подсчета количества конкретных слов в строке используя хэш мар*/
+
+public class Words {
+    public static void main(String[] args) {
+        String str = "This task task will be solved by by by Java developer developer ";
+        System.out.println(findWordsWithGrouping(str));
+    }
+
+    private static Map<String, Long> findWordsWithGrouping(String str){
+
+    }
+}
+

@@ -1,7 +1,9 @@
 package by.ruslan.radzevich.task7;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.TreeMap;
+import java.util.stream.IntStream;
 
 public class leetCode2 {
 //    Если массив целочисленных чисел отсортирован в неубывающем порядке, удалите дубликаты на месте таким образом,
@@ -16,7 +18,7 @@ public class leetCode2 {
     //Возвращать.k
     public static void main(String[] args) {
 
-        System.out.println(Arrays.toString(invertMassive(new int[]{1, 2, 3, 51, 54})));
+//        System.out.println(Arrays.toString(invertMassive(new int[]{1, 2, 3, 51, 54})));
 //        int[] nums = {1, 1, 1, 2, 2, 3, 4, 5, 6, 6};
 //        int k = removeDuplicates(nums);
 //        System.out.println("Количество уникальных элементов: " + k);
@@ -24,6 +26,8 @@ public class leetCode2 {
 //        for (int i = 0; i < k; i++) {
 //            System.out.print(nums[i] + " ");
 //        }
+//        System.out.println(Arrays.toString(invertMassive3(new int[]{2, 5, 6, 2, 4, 5})));
+        System.out.println(Arrays.toString(invertMassive2(new int[]{2, 5, 6, 2, 4, 5})));
     }
 
     public static int removeDuplicates(int[] nums) {
@@ -38,21 +42,6 @@ public class leetCode2 {
         return dublicate + 1;
     }
 
-//написать массив в обратном порядке
-
-    public static int[] invertMassive(int[] nums) {
-        Arrays.sort(nums);
-        if (nums.length == 0) {
-            throw new RuntimeException();
-        }
-        for (int i = 0; i < nums.length / 2; i++) {
-            int temp = nums[i];
-            nums[i] = nums[nums.length - 1 - i];
-            nums[nums.length - 1 - i] = temp;
-        }
-        return nums;
-    }
-
     public static boolean canFormArithmeticProgression(int[] arr) {
         Arrays.sort(arr); // Сортируем массив
 
@@ -65,6 +54,73 @@ public class leetCode2 {
         }
 
         return true; // Если данное условие выполнено для каждого элемента, возвращаем true
+    }
+
+//написать массив в обратном порядке
+
+    public static int[] invertMassive(int[] nums) {
+        if (nums.length == 0) {
+            throw new RuntimeException();
+        }
+        for (int i = 0; i < nums.length / 2; i++) {
+            int temp = nums[i];
+            nums[i] = nums[nums.length - 1 - i];
+            nums[nums.length - 1 - i] = temp;
+        }
+        return nums;
+    }
+    public static int[] invertMassive2(int[] nums) {
+        if (nums.length == 0) {
+            throw new RuntimeException();
+        }
+        int[] newArray = new int[nums.length];
+        for (int i = nums.length - 1;i >= 0;  i--) {
+            newArray[nums.length-1-i]= nums[i];
+        }
+        return newArray;
+    }
+
+
+    public static int[] invertMassive3(int[] nums) {
+        if (nums.length == 0) {
+            throw new RuntimeException("Массив пуст");
+        }
+
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left < right) {
+            int temp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = temp;
+
+            left++;
+            right--;
+        }
+
+        return nums;
+    }
+
+    public static int[] invertAndSortWithStreams(int[] nums) {
+        if (nums.length == 0) {
+            throw new RuntimeException("Пустой массив");
+        }
+
+        return Arrays.stream(nums)
+                .boxed()
+                .sorted(Comparator.reverseOrder())
+                .mapToInt(Integer::intValue)
+                .toArray();
+    }
+
+    public static int[] invertWithStreams(int[] nums) {
+        if (nums.length == 0) {
+            throw new RuntimeException("Пустой массив");
+        }
+
+        return IntStream.range(0, nums.length)
+                .map(i -> nums[nums.length - 1 - i])
+                .toArray();
     }
 
 
