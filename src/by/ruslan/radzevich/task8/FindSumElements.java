@@ -2,7 +2,9 @@ package by.ruslan.radzevich.task8;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Написать метод, который принимает массив целых чисел nums и число target.
@@ -40,4 +42,34 @@ public class FindSumElements {
         }
         return null;
     }
+    public static boolean isPalindrome(String text) {
+        if (text == null) return false;
+
+        String normalized = text.replaceAll("[^\\p{L}\\p{N}]", "")
+                .toLowerCase();
+
+        int left = 0, right = normalized.length() - 1;
+        while (left < right) {
+            if (normalized.charAt(left++) != normalized.charAt(right--)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    List<Integer> numbers = List.of(10, 20, 30, 40);
+
+    List<String> result = numbers.stream()
+            .filter(n -> n > 20)
+            .map(n -> n + "USD")
+            .collect(Collectors.toList());
+
+
+    List<String> strings = List.of("1", "2", "3");
+
+    List<Integer> integers = strings.stream()
+            .map(Integer::parseInt)
+            .collect(Collectors.toList());
+
+
 }
