@@ -123,5 +123,25 @@ public class leetCode2 {
                 .toArray();
     }
 
+    public static boolean isPalindrome(String text) {
+        if (text == null) {
+            return false;
+        }
+
+        int left = 0;
+        int right = text.length() - 1;
+
+        while (left < right) {
+            if (text.charAt(left) != text.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
+
 
 }

@@ -114,44 +114,44 @@ public class LiveCode {
 //// Что будет выведено?
 //    Integer i1 = 128;
 //    Integer i2 = 128;
-//System.out.println(i1.equals(i2));
+//System.out.println(i1.equals(i2)); true
 //
 //    Integer i1 = 128;
 //    Integer i2 = i1;
-//System.out.println(i1.equals(i2));
+//System.out.println(i1.equals(i2)); true
 //
 //    Integer i1 = 128;
 //    Integer i2 = i1;
-//System.out.println(i1 == i2);
+//System.out.println(i1 == i2); true
 //
 //    Integer i1 = 128;
 //    Integer i2 = i1;
 //    i1 = 127;
-//System.out.println(i1 == i2);
+//System.out.println(i1 == i2);  false
 //
 //    Integer i1 = 128;
-//System.out.println(i1.equals(128));
+//System.out.println(i1.equals(128)); true
 //
 //    Integer i1 = 128;
-//System.out.println(i1 == 128);
+//System.out.println(i1 == 128); true
 //
 //    Integer i1 = 128;
-//System.out.println(i1.hashCode() == 128.hashCode());
+//System.out.println(i1.hashCode() == 128.hashCode()); ошибка
 //    Integer i1 = 128;
 //    Integer i2 = 128;
-//System.out.println(i1.hashCode() == i2.hashCode());
-//
-//    Integer i1 = 128;
-//    Integer i2 = 128;
-//System.out.println(i1.hashCode().equals(i2.hashCode()));
+//System.out.println(i1.hashCode() == i2.hashCode()); true
 //
 //    Integer i1 = 128;
 //    Integer i2 = 128;
-//System.out.println(i1 == i2);
+//System.out.println(i1.hashCode().equals(i2.hashCode())); true
+//
+//    Integer i1 = 128;
+//    Integer i2 = 128;
+//System.out.println(i1 == i2); false
 //
 //    Integer i1 = 127;
 //    Integer i2 = 127;
-//System.out.println(i1 == i2);
+//System.out.println(i1 == i2); true
 //
 ////////////////////
 //// SQL
