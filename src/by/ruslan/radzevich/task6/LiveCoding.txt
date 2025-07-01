@@ -1,0 +1,139 @@
+///////////
+// core
+///////////
+
+// Превратить List<List<String>> приходящий на вход в строку, где каждая подстрока разделена запятой и пробелом (S4, S5, S6...).
+
+List<List<String>> listOflists = List.of(List.of("S4", "S5", "S6"),
+List.of("S4", "S5", "S6"),
+List.of("S7", "S8", "S9"));
+
+  listOflists.stream().flatMap(el->el.strem())
+  .collect(Collector.joining(", "))
+
+//////////////
+
+// На вход приходит номер телефона который начинается с +.
+// Необходимо маскировать цифры в номере, чтобы номер принял следующий вид: +NN**..**NN.
+// Количество звездочек должно соответствовать количеству замаскированных символов.
+
+public static void main(String[] args) {
+ String phone = "+79113456673";
+ String mask = phone.reaplaseAll("+NN", +[])
+
+
+}
+
+///////////////
+
+// Задача: найти второй максимально большой элемент в массиве.
+
+public static void main(String[] args) {
+    System.out.println(getSecondMaxElement(new int[] {33, 41, 11, 44, 4, 2, 6, 7, 8 ,9, 10}));
+
+}
+
+////////////
+
+// На вход приходит список списков зашифрованный строк, известно что в каждой зашифрованное строке находится 1 слово.
+// Необходимо расшифровать полученные данные и собрать их все в 1 строку, разделенную пробелами.
+
+public static void main(String[] args) {
+
+List<List<String>> lists = List.of(
+  List.of("SGUxMTExbC0tMGxvMjEyMy4uLi8v", "dzBvcjFsZA=="),
+  List.of("aW4=", "dGgxMTExMjMyaXM="),
+  List.of("YmVhdXQxMjNpZjMxMnVs", "ZGF5"));
+}
+
+//////////////
+
+// Отсортировать массив таким образом, чтобы все нечетные элементы остались на своих местах, а четные были отсортированы по возрастанию.
+
+List<Integer> list = new ArrayList<>(Arrays.asList(3, 4, 1, 5, 2));
+
+//////////////
+
+/**Необходимо реализовать метод, который будет возвращать итоговую сумму списания с банковского счета
+ * с учетом комиссии за перевод средств.
+ * Необходимо избегать конструкции выбора (if-else, switch-case, filter и т.д.).
+ * Известно что на вход приходят валидные данные. Сумма не может быть меньше 0, но может быть 0.
+ *
+ * Комиссии за суммы:
+ * < 1_000р - 0%
+ * 1_000р - 1%
+ * 10_000р - 2%
+ * 100_000р - 5%
+ * 1_000_000р - 7%
+ */
+
+///////////
+// SQL
+///////////
+
+// Сформировать отчет в котором будет количество записей в указанных таблицах и строка с указанием из какой таблицы получены данные.
+
+Cards(id, number)
+
+Clients(id. name)
+
+Accounts(id, number)
+
+Select Count(*) AS tableName
+from
+
+|column1|column2|column3|tableName|
+|number | name  | number|19
+
+|tableName|       |
+|19       | Cards |
+
+
+select 'someString';
+
+|column      |
+| someString |
+
+/////////////
+
+// Сформировать список имен клиентов, у которых на данный момент меньше 5 счетов при помощи 1 запроса.
+
+Clients(id, name)
+
+Accounts(id, number, client_id)
+Select client.name, COUNT(Accounts.number) as countNumber
+from Clients
+inner join Accounts on
+Clients.id = Accounts.client_id
+Group by clients.name
+having countNumber < 5;
+
+
+/////////////
+// Multithread
+/////////////
+
+// Назвать предполагаемый вывод в консоль.
+
+public static void main(String[] args) {
+    Thread thread = new ThreadCustom("ThreadCustom");
+
+    thread.start();
+    thread.run();
+    thread.run();
+    thread.run();
+    thread.run();
+    thread.run();
+}
+
+public class ThreadCustom extends Thread {
+
+  public ThreadCustom(String name) {
+    super(name);
+  }
+
+  @Override
+  public void run() {
+    System.out.println(Thread.currentThread().getName());
+  }
+}
