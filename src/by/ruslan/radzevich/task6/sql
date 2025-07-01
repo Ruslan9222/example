@@ -1,0 +1,40 @@
+//        FISH (ID, NAME) CATCH (ID, FISH_ID, DT, QUANTITY)
+//        Необходимо вывести все наименования рыб, суммарный улов по которым на дату d менее n.
+SELECT Fish.name, SUM(Catch.quantity) as count_quantity
+from fish
+inner join catch
+on Fish.id = Catch.fish_Id
+where catch.dt = 'd'
+group by Fish.name
+Having SUM(Catch.quantity)<n;
+*******
+всех менеджеров, у которых более пяти подчинённых
+SELECT
+    e.employee_id,
+    e.first_name,
+    e.last_name,
+    COUNT(sub.employee_id) AS subordinates
+FROM
+    employees e
+JOIN
+    employees sub ON sub.manager_id = e.employee_id
+GROUP BY
+    e.employee_id, e.first_name, e.last_name
+HAVING
+    COUNT(sub.employee_id) > 5;
+*****
+SELECT p.ID, p.AMOUNT
+FROM PAYMENT p
+JOIN CREDIT cr ON p.credit_id=cr.id
+JOIN CLIENT cl ON cl.id=cr.client_id
+WHERE cl.id=37
+ORDER BY p.amount DESC
+LIMIT 5
+*******
+SELECT COUNT(*) AS countPayment
+FROM PAYMENT p
+JOIN CREDIT cr ON p.credit_id = cr.id
+JOIN CLIENT cl ON cl.id = cr.client_id
+WHERE cl.id = 15
+  AND p.amount > 100000;
+
