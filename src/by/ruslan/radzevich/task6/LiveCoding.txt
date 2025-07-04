@@ -19,7 +19,15 @@ List.of("S7", "S8", "S9"));
 
 public static void main(String[] args) {
  String phone = "+79113456673";
- String mask = phone.reaplaseAll("+NN", +[])
+ public static String maskPhoneNumber(String phone) {
+     if (phone == null || !phone.matches("^\\+\\d{4,}$")) {
+         throw new IllegalArgumentException("Неверный формат номера.");
+     }
+
+     // Заменяем всё между двумя крайними группами цифр на звездочки
+     return phone.replaceAll("^(\\+\\d{2})(\\d+)(\\d{2})$",
+                             m -> m.group(1) + "*".repeat(m.group(2).length()) + m.group(3));
+ }
 
 
 }
@@ -31,6 +39,25 @@ public static void main(String[] args) {
 public static void main(String[] args) {
     System.out.println(getSecondMaxElement(new int[] {33, 41, 11, 44, 4, 2, 6, 7, 8 ,9, 10}));
 
+public static int getSecondMaxElement(int[] nums) {
+    if (nums == null || nums.length < 2) {
+        throw new IllegalArgumentException("Массив должен содержать минимум два элемента.");
+    }
+
+    int max = Integer.MIN_VALUE;
+    int secondMax = Integer.MIN_VALUE;
+
+    for (int num : nums) {
+        if (num > max) {
+            secondMax = max;
+            max = num;
+        } else if (num > secondMax && num < max) {
+            secondMax = num;
+        }
+    }
+
+    return secondMax;
+}
 }
 
 ////////////
@@ -46,11 +73,45 @@ List<List<String>> lists = List.of(
   List.of("YmVhdXQxMjNpZjMxMnVs", "ZGF5"));
 }
 
+        String result = lists.stream()
+            .flatMap(List::stream) // объединяем все строки в единый поток
+            .map(Decoder::decodeBase64) // декодируем каждую строку
+            .collect(Collectors.joining(" ")); // объединяем с пробелами
+
+        System.out.println(result);
+    }
+
+    private static String decodeBase64(String encoded) {
+        return new String(Base64.getDecoder().decode(encoded));
+    }
+}
+
 //////////////
 
 // Отсортировать массив таким образом, чтобы все нечетные элементы остались на своих местах, а четные были отсортированы по возрастанию.
 
 List<Integer> list = new ArrayList<>(Arrays.asList(3, 4, 1, 5, 2));
+public class SortEvenPreservingOdds {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>(Arrays.asList(3, 4, 1, 5, 2));
+
+        // Получаем отсортированные чётные числа
+        List<Integer> sortedEvens = list.stream()
+            .filter(n -> n % 2 == 0)
+            .sorted()
+            .collect(Collectors.toList());
+
+        // Индекс для отслеживания позиции в списке sortedEvens
+        Iterator<Integer> evenIterator = sortedEvens.iterator();
+
+        // Заменяем чётные числа в исходном списке отсортированными
+        List<Integer> result = list.stream()
+            .map(n -> n % 2 == 0 ? evenIterator.next() : n)
+            .collect(Collectors.toList());
+
+        System.out.println(result); // [3, 2, 1, 5, 4]
+    }
+}
 
 //////////////
 
@@ -66,7 +127,32 @@ List<Integer> list = new ArrayList<>(Arrays.asList(3, 4, 1, 5, 2));
  * 100_000р - 5%
  * 1_000_000р - 7%
  */
+public class FeeCalculator {
+    private static final NavigableMap<Integer, Double> feeMap = new TreeMap<>();
 
+    static {
+        // Порог -> процент комиссии
+        feeMap.put(1_000, 0.01);
+        feeMap.put(10_000, 0.02);
+        feeMap.put(100_000, 0.05);
+        feeMap.put(1_000_000, 0.07);
+    }
+
+    public static double calculateTotalAmount(double amount) {
+        Double fee = Optional.ofNullable(feeMap.floorEntry((int) amount))
+                             .map(Map.Entry::getValue)
+                             .orElse(0.0);
+
+        return amount + amount * fee;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(calculateTotalAmount(999));       // 999.0
+        System.out.println(calculateTotalAmount(1000));      // 1010.0
+        System.out.println(calculateTotalAmount(999_999));   // 1_049_998.95
+        System.out.println(calculateTotalAmount(1_000_000)); // 1_070_000.0
+    }
+}
 ///////////
 // SQL
 ///////////
@@ -79,20 +165,12 @@ Clients(id. name)
 
 Accounts(id, number)
 
-Select Count(*) AS tableName
-from
+SELECT COUNT(*) AS total, 'Cards' AS source FROM Cards
+UNION ALL
+SELECT COUNT(*) AS total, 'Clients' AS source FROM Clients
+UNION ALL
+SELECT COUNT(*) AS total, 'Accounts' AS source FROM Accounts;
 
-|column1|column2|column3|tableName|
-|number | name  | number|19
-
-|tableName|       |
-|19       | Cards |
-
-
-select 'someString';
-
-|column      |
-| someString |
 
 /////////////
 
