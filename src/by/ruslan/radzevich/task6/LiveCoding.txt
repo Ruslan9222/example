@@ -26,7 +26,7 @@ public static void main(String[] args) {
 
      // Заменяем всё между двумя крайними группами цифр на звездочки
      return phone.replaceAll("^(\\+\\d{2})(\\d+)(\\d{2})$",
-                             m -> m.group(1) + "*".repeat(m.group(2).length()) + m.group(3));
+                                -> m.group(1) + "*".repeat(m.group(2).length()) + m.group(3));
  }
 
 
