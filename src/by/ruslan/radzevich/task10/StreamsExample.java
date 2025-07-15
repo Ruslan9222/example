@@ -65,6 +65,10 @@ public class StreamsExample {
         System.out.println(reduce);
 
         List<Integer> numbers2 = List.of(1, 2, 2, 3, 4, 4, 5);
+        int sum = numbers2.stream()
+                .mapToInt(el -> el)
+                .sum();
+        System.out.println(sum);
 
 
 //        Сгруппировать слова по длине c с преобразованием в map.
