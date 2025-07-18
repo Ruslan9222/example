@@ -1,0 +1,129 @@
+задача:
+@Controller
+@RequestMapping
+public class MyController {
+
+@Autowired
+private RestTemplate restTemplate;
+@Autowired
+private ClientRepository clientRepository;
+
+@RequestMapping(path = "***", method = "/**()")
+public User getClient(@RequestParam String fio) {
+    String externalServiceUrl = "https://external-service/api/client/" + fio;
+    User user = restTemplate.getForObject(externalServiceUrl, User.class);
+
+    var userOpt = clientRepository.findAll()
+        .stream()
+        .filter(it -> it.getFio().equals(fio))
+        .findFirst();
+    if (userOpt.get() == null) {
+        clientRepository.save(user);
+        return user;
+    } else {
+        return userOpt.get();
+    }
+}
+}
+
+ответ:
+@RestController
+@RequaredArgsConstructor
+@RequestMapping("/api/v1/client")
+public class ClientsController {
+
+public final ClientsService clientsService;
+
+@GetMapping()
+@ResponseStatus(HttpStatus.OK)
+public ClientDto getClientByEmail(@RequestParam String email) {
+   return clientsService.getClientByEmail(email);
+ }
+}
+
+public record ClientDto (
+   UUID id;
+   String name;
+   String email;
+){
+}
+
+@Service
+public class ClientsService {
+
+private final RestTemplate restTemplate;
+private final ClientRepository clientRepository;
+
+private static final String EXTERNAL_URL = "https://external-service/api/client/"
+
+public ClientDto getClientByEmail(String email) {
+
+    User user = restTemplate.getForObject(EXTERNAL_URL + email, User.class);
+if (user==null) {
+throw new NotFoundException("User not found");
+}
+
+Optional<User> userOpt = clientRepository.findByEmail(user.getEmail());
+
+User savedUser = userOpt.orElseGet(()-> clientRepository.save(user));
+
+  return mapToDto(savedUser);
+ }
+}
+
+public ClientDto mapToDto (User user){
+return new ClientDto(user.getId(), user.getName(), user.getEmail);
+}
+
+
+public interface ClientRepository extends JPARepository(User, UUID){
+
+   public Optional<User> findByEmail(String email);
+}
+
+
+___________________________________________________
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
+@Service
+public class CatService{
+
+    @Autowired
+    private CatRepository catRepository;
+
+
+    public void getCats(String id) {
+        Optional<Cat> cat = catRepository.findById(id);
+        doSomething(cat.orElse(null));
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void doSomething(Cat cat) {
+        cat.name = "Мурзик";
+    }
+
+
+
+}
+
+@Entity
+final class Cat {
+
+    @Id
+    Long id;
+    String name;
+    int age;
+}
+
+@Service
+interface CatRepository extends JpaRepository<Cat, String>{
+
+}
