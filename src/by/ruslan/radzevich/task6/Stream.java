@@ -6,21 +6,28 @@ import java.util.OptionalDouble;
 public class Stream {
     public static void main(String[] args) {
 
+
+
         List.of("dog", "cat", "hamster")
                 .stream()
                 .filter(s -> {
                     System.out.println("filter: " + s);
                     return s.length() <= 3;
                 })
-                .map(s -> {
-                    System.out.println("map: " + s);
-                    return s.toUpperCase();
-                })
+//                .map(s -> {
+//                    System.out.println("map: " + s);
+//                    return s.toUpperCase();
+//                })
+                .map(String::toLowerCase)
                 .sorted()
                 .forEach(s -> {
                     System.out.println("forEach: " + s);
                 });
-
+        @FunctionalInterface
+        interface BinaryFunction<A1, A2, R> {
+            R apply(A1 arg1, A2 arg2);
+        }
+        BinaryFunction<Integer, Integer, Integer> minFunction = Math::min;
 
 
         /**
