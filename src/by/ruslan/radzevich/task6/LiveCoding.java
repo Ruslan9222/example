@@ -60,9 +60,9 @@ public class LiveCoding {
 //                .collect(Collectors.groupingBy(el -> el.city(), Collectors
 //                        .mapping(el2 -> el2.name(), Collectors.toList())));
 //        System.out.println("user = " + user2);
-//       Map<String, Double> user = users.stream()
-//                .collect(Collectors.groupingBy(el->el.city(), Collectors
-//                        .averagingDouble(el2-> el2.age())));
+       Map<String, Double> user = users.stream()
+                .collect(Collectors.groupingBy(el->el.city(), Collectors
+                        .averagingDouble(el2-> el2.age())));
 //        System.out.println(user);
 }
 

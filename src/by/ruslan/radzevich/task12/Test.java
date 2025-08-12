@@ -1,10 +1,12 @@
 package by.ruslan.radzevich.task12;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalDouble;
 import java.util.TreeMap;
+import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -150,6 +152,7 @@ public class Test {
 
     public static void main(String[] args) {
 
+
         // Задача 1: Отфильтровать имена, начинающиеся на A, и отсортировать
         List<String> names = List.of("Alice", "Bob", "Charlie", "Ann", "David", "Amanda");
 //        names.stream()
@@ -257,7 +260,6 @@ public class Test {
 //                                .average()
 //                                .orElse(0.0))))
 //                .forEach((el1,el2)-> System.out.println("el1 = " + el1+" "+el2));
-      
 
 
         // Задача 10: Найти 3 самых молодых человека в каждом возрасте
@@ -329,5 +331,47 @@ public class Test {
 
 
     }
+    private static int[] findUnique(int[] array) {
+        Map<Integer, Integer> frequency = Arrays.stream(array)
+                .boxed()
+                .collect(Collectors.toMap(
+                        Function.identity(),
+                        x -> 1,
+                        Integer::sum
+                ));
+
+        return frequency.entrySet().stream()
+                .filter(entry -> entry.getValue() == 1)
+                .mapToInt(Map.Entry::getKey)
+                .toArray();
+    }
+//
+//    public static int[] findUnique1 int[] input) {
+//        int minValue = 1;
+//        int maxValue = 42;
+//        int[] frequency = new int[maxValue - minValue + 1];
+//
+//        for (int num : input) {
+//            frequency[num - minValue]++;
+//        }
+//
+//        int count = 0;
+//        for (int num : input) {
+//            if (frequency[num - minValue] == 1) {
+//                count++;
+//            }
+//        }
+//
+//        int[] result = new int[count];
+//        int index = 0;
+//        for (int num : input) {
+//            if (frequency[num - minValue] == 1) {
+//                result[index++] = num;
+//            }
+//        }
+//
+//        return result;
+//    }
+
 
 }
