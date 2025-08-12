@@ -13,6 +13,7 @@ class PrintFilteredAccounts {
     }
 
 
+
     public static void printFilteredAccounts(List<Account> accounts) {
         List<Account> nonEmptyAccounts = filter(accounts, account -> account.balance() > 0);
 
