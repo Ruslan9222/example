@@ -82,3 +82,8 @@ INSERT INTO supply VALUES
 
 Занести из таблицы supply в таблицу book только те книги, названия которых отсутствуют в таблице book.
 
+INSERT INTO book (book_id, title, author, price, amount)
+SELECT s.supply_id, s.title, s.author, s.price, s.amount
+FROM supply s
+LEFT JOIN book b ON s.title = b.title
+WHERE b.title IS NULL;
