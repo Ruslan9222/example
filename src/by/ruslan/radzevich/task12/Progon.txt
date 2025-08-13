@@ -1,0 +1,196 @@
+
+1. Что будет выведено на экран?
+
+
+int b = (int) Stream.of(1,3,6,7)
+.filter(a-> a > 5)
+.peek(a-> System.out.println(a))
+.toList().stream()
+.peek(a-> System.out.println(a))
+.count();
+System.out.println(b);
+
+
+----------------------------------------------------------------------------------------
+
+2. Что будет выведено на экран?
+
+
+String s = "hello";
+String s2 = s.replace("l", "L");
+System.out.println(s2);
+
+
+----------------------------------------------------------------------------------------
+
+3. Что будет выведено на экран?
+
+
+public static void main(String[] args) {
+    final Object a = new Object();
+    final Object b = new Object();
+
+    Thread t1 = new Thread(() -> {
+        synchronized (a) {
+            sleep(100);
+            synchronized (b) {
+                System.out.println("T1 done");
+            }
+        }
+    });
+
+    Thread t2 = new Thread(() -> {
+        synchronized (b) {
+            sleep(100);
+            synchronized (a) {
+                System.out.println("T2 done");
+            }
+        }
+    });
+
+    t1.start();
+    t2.start();
+}
+
+
+----------------------------------------------------------------------------------------
+
+
+4. Необходимо придумать алгоритм, который сможет найти 2 числа в переданном массиве, которые дают в сумме targetSum.
+
+int[] array = {1,2,4,5,6};
+
+int targetSum = 6;
+public void sumTarget(int[] array, int targetSum){
+
+
+}
+
+"Найдена нужная пара эелментов 2 + 4"
+
+
+
+----------------------------------------------------------------------------------------
+
+
+5. Необходимо написать метод который определяет палиндром строка или нет (двумя способами). "a bcс Ba" = true
+
+public static boolean isPalindromeSimple(String s) {
+
+
+}
+
+
+----------------------------------------------------------------------------------------
+
+
+6. Найти все "пиковые" элементы, где элемент больше соседних. Например, для числа 7 в списке, оба соседа (3 и 1) меньше.
+
+Дан список чисел:
+List<Integer> numbers = Arrays.asList(1, 3, 7, 1, 2, 6, 3, 4, 5, 2);
+
+List<Integer> peaks = Intstream.range(1, numbers.size()-1).filter(el -> numbers.get(el) > numbers.get(el-1) && numbers.get(el) > numbers.get(el+1)).mapToObj(numbers::get).toList();
+
+
+----------------------------------------------------------------------------------------
+
+
+7. Отсортировать сотрудников сначала по возрасту, затем по зарплате (в порядке убывания).
+
+
+Дан список сотрудников:
+
+class Employee {
+    String name;
+    int age;
+    double salary;
+
+    // Конструктор, геттеры и сеттеры
+}
+
+List<Employee> employees = Arrays.asList(
+    new Employee("Alice", 30, 50000),
+    new Employee("Bob", 25, 60000),
+    new Employee("Charlie", 35, 55000),
+    new Employee("Diana", 30, 70000)
+);
+
+List<Employee> sortedEmployees = emoloyesss.stream()
+.sorted(Comparator.comparingInt(Employee::getAge).thenComparing(Comparator.comparingDouble(Employee::getSalary).reversed())).toList();
+
+----------------------------------------------------------------------------------------
+
+8. Реализовать упрощённый шедулер задач
+
+Нужно написать класс MyScheduler, который позволяет планировать выполнение задач (Runnable) через заданное количество миллисекунд.
+Шедулер должен поддерживать:
+
+*Метод schedule(Runnable task, long delayMillis) — запуск задачи через delayMillis миллисекунд.
+
+*Возможность запускать несколько задач параллельно.
+
+*Корректное завершение работы (shutdown()), при котором новые задачи не принимаются, а старые завершаются.
+
+Ограничения:
+
+*Нельзя использовать ScheduledExecutorService или Timer.
+
+*Можно использовать Thread и ExecutorService.
+
+*Код должен быть потокобезопасным.
+
+
+
+public class MyScheduler {
+
+    public void schedule(Runnable task, long delayMillis) {
+        // TODO: реализовать запуск task через delayMillis миллисекунд
+    }
+
+    public void shutdown() {
+        // TODO: корректно завершить работу
+    }
+
+    public static void main(String[] args) {
+        MyScheduler scheduler = new MyScheduler();
+
+        scheduler.schedule(() -> System.out.println("Task 1 executed at " + System.currentTimeMillis()), 1000);
+        scheduler.schedule(() -> System.out.println("Task 2 executed at " + System.currentTimeMillis()), 2000);
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        scheduler.shutdown();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
