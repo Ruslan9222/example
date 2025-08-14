@@ -152,6 +152,10 @@ public class Test {
 
     public static void main(String[] args) {
 
+        String s = "hello";
+        String s2 = s.replaceAll("h"," ");
+        System.out.println(s2);
+
 
         // Задача 1: Отфильтровать имена, начинающиеся на A, и отсортировать
         List<String> names = List.of("Alice", "Bob", "Charlie", "Ann", "David", "Amanda");

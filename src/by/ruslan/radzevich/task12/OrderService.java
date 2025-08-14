@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.lang.Thread.sleep;
+
 public class OrderService {
     record Order(String userId, String product, int quantity) {
     }
@@ -26,7 +28,44 @@ public class OrderService {
                 new Order("покупатель1", "банан", 3)
         );
 
-        System.out.println(groupOrders(orders));
+        String s = "hello";
+        String s2 = s.replace("l", "L");
+//        System.out.println(s2);
+
+
+//        System.out.println(groupOrders(orders));
+        final Object a = new Object();
+        final Object b = new Object();
+
+        Thread t1 = new Thread(() -> {
+            synchronized (a) {
+                try {
+                    sleep(100);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                synchronized (b) {
+                    System.out.println("T1 done");
+                }
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            synchronized (b) {
+                try {
+                    sleep(100);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                synchronized (a) {
+                    System.out.println("T2 done");
+                }
+            }
+        });
+
+        t1.start();
+        t2.start();
     }
+
 }
 
