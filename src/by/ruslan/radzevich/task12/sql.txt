@@ -1,5 +1,13 @@
 Как в запросе JPA выводить часть результирующих строк (к примеру, с 10-й до 20-й строки)
 
+SELECT COUNT(*)
+FROM product
+WHERE category_id = (
+    SELECT category_id
+    FROM product
+    WHERE name = 'Конфеты'
+) AND price < 100;
+
 PageRequest request = PageRequest.of(10 ,20)
 Page<MyEntity> page = myEntityRepository.findAll(pageRequest);
 
