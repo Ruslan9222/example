@@ -63,10 +63,31 @@ int[] array = {1,2,4,5,6};
 int targetSum = 6;
 public void sumTarget(int[] array, int targetSum){
 
+Map <Integer, Integer> map = new HashMap<>();
+  for(int i=0; i<array.length; i++){
+    int complete = targetSum - array[i];
+     if(map.containsKey(complete)){
+      return new int[]{map.get(complete) , i};
+      }
+      map.put(array[i], i);
+}
+      return null;
+  }
 
+
+public int[] twoSumBruteForce(int[] array, int targetSum) {
+    for (int i = 0; i < array.length; i++) {
+        for (int j = i + 1; j < array.length; j++) {
+            if (array[i] + array[j] == targetSum) {
+                return new int[]{i, j}; // возвращаем индексы
+            }
+        }
+    }
+    return null; // если пара не найдена
 }
 
 "Найдена нужная пара эелментов 2 + 4"
+
 
 
 
@@ -76,8 +97,27 @@ public void sumTarget(int[] array, int targetSum){
 5. Необходимо написать метод который определяет палиндром строка или нет (двумя способами). "a bcс Ba" = true
 
 public static boolean isPalindromeSimple(String s) {
+String ignoreCase = s.replaceAll([^a-zZ-A0-9], "").toUpperCase();
+String check = new StringBuilder(ignoreCase).reversed.toString;
+return ignoreCase.equals(check);
+}
+public static boolean isPalindromeSimple(String s){
+int left = 0;
+int right = s.length()-1;
 
-
+while(left<right){
+while(left<right && !Character.isLetterOrDigit(s.charAt(left))){
+left++;
+}
+while(left<right && !Character.isLetterOrDigit(s.charAt(right))){
+right--;
+}
+if(Character.toLowerCase(s.charAt(left))!= Character.toLowerCase(s.charAt(right))){
+return false;
+}
+left++;
+right--;
+}return true;
 }
 
 
@@ -88,8 +128,11 @@ public static boolean isPalindromeSimple(String s) {
 
 Дан список чисел:
 List<Integer> numbers = Arrays.asList(1, 3, 7, 1, 2, 6, 3, 4, 5, 2);
+List <Integer> peek = IntStream().range(1 , numbers.size()-1)
+  .filter(el->numbers.get(el)<numbers.get(el-1)&&numbers.get(el)>numbers.get(el+1))
+  .mapToObj(numbers::get)
+  .toList
 
-List<Integer> peaks = Intstream.range(1, numbers.size()-1).filter(el -> numbers.get(el) > numbers.get(el-1) && numbers.get(el) > numbers.get(el+1)).mapToObj(numbers::get).toList();
 
 
 ----------------------------------------------------------------------------------------
@@ -115,8 +158,10 @@ List<Employee> employees = Arrays.asList(
     new Employee("Diana", 30, 70000)
 );
 
-List<Employee> sortedEmployees = emoloyesss.stream()
-.sorted(Comparator.comparingInt(Employee::getAge).thenComparing(Comparator.comparingDouble(Employee::getSalary).reversed())).toList();
+employees.stream()
+ .sort(Employee::age , )
+
+
 
 ----------------------------------------------------------------------------------------
 
