@@ -1,5 +1,13 @@
-Как в запросе JPA выводить часть результирующих строк (к примеру, с 10-й до 20-й строки)
-
+-- Найдём повторяющиеся значения
+SELECT val
+FROM A
+WHERE val IN (
+    SELECT val
+    FROM A
+    GROUP BY val
+    HAVING COUNT(*) > 1
+)
+ORDER BY id;
 SELECT COUNT(*)
 FROM product
 WHERE category_id = (
@@ -8,6 +16,7 @@ WHERE category_id = (
     WHERE name = 'Конфеты'
 ) AND price < 100;
 
+Как в запросе JPA выводить часть результирующих строк (к примеру, с 10-й до 20-й строки)
 PageRequest request = PageRequest.of(10 ,20)
 Page<MyEntity> page = myEntityRepository.findAll(pageRequest);
 
