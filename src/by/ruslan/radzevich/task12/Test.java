@@ -4,12 +4,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.OptionalDouble;
-import java.util.TreeMap;
 import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 class Person {
 
@@ -153,7 +149,7 @@ public class Test {
     public static void main(String[] args) {
 
         String s = "hello";
-        String s2 = s.replaceAll("h"," ");
+        String s2 = s.replaceAll("h", " ");
         System.out.println(s2);
 
 
@@ -306,6 +302,17 @@ public class Test {
                 new Employee("Henry", "Sales", 39),
                 new Employee("Ivan", "Sales", 42)
         );
+//        employees1.stream()
+//                .collect(Collectors.groupingBy(
+//                        Employee::getDepartment,
+//                        Collectors.collectingAndThen(
+//                                Collectors.toList(),
+//                                list -> list.size() >= 3
+//                                        ? list.stream().collect(Collectors.averagingInt(Employee::getAge))
+//                                        : null
+//                        )
+//                ))
+//                .forEach((key,value)-> System.out.println("el = " + key+" "+value));
 
 
         // Найти фильм с наивысшим рейтингом в каждом жанре.
@@ -321,6 +328,13 @@ public class Test {
                 new Movie(9, "Coco", "Animation", 8.4),
                 new Movie(10, "Up", "Animation", 8.4)           // дубликат по рейтингу
         );
+        movies.stream()
+                .collect(Collectors.groupingBy(
+                        Movie::getGenre,
+                        Collectors.maxBy(Comparator.comparingDouble(Movie::getRating))
+                ))
+                .forEach((el1,el2)-> System.out.println("el1 = " + el1+el2));
+
 
 
         // Топ-3 дорогих товаров по каждой категории
@@ -335,6 +349,7 @@ public class Test {
 
 
     }
+
     private static int[] findUnique(int[] array) {
         Map<Integer, Integer> frequency = Arrays.stream(array)
                 .boxed()
