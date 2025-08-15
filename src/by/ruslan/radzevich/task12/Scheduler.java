@@ -5,11 +5,11 @@ package by.ruslan.radzevich.task12;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Sheduler {
+public class Scheduler {
     private final Map<Integer, Runnable> scheduledMap = new HashMap<>();
 
     public static void main(String[] args) {
-        new Sheduler().runScheduler();
+        new Scheduler().runScheduler();
     }
 
     private void runScheduler() {
