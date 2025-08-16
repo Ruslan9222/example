@@ -1,0 +1,88 @@
+Какой SQL-запрос вернёт список всех заказов вместе с именами пользователей,
+которые их сделали? Таблицы: 'orders' (order_id, user_id, total) и 'users' (user_id, name).
+
+select users.name, orders.total
+from users
+join orders on orders.user_id = users.user_id;
+
+Какой SQL-запрос вернёт всех пользователей, у которых нет заказов?
+Таблицы: 'users' (user_id, name) и 'orders' (order_id, user_id).
+
+select users.name
+from users
+left join orders on orders.user_id = users.user_id
+where orders.user_id is null;
+
+or
+
+SELECT users.name
+FROM users
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM orders
+    WHERE orders.user_id = users.user_id
+);
+
+Какой SQL-запрос вернёт список товаров, которые были заказаны более 10 раз?
+Таблицы: 'order_items' (order_id, product_id, quantity) и 'products' (product_id, name).
+SELECT products.name, COUNT(order_items.order_id) AS order_count
+FROM products
+JOIN order_items ON order_items.product_id = products.product_id
+GROUP BY products.name
+HAVING COUNT(order_items.order_id) > 10;
+
+Какой SQL-запрос вернёт пользователей, которые сделали хотя бы один заказ на сумму более 1000?
+Таблицы: 'users' (user_id, name) и 'orders' (order_id, user_id, total).
+select users.name
+from users
+join orders on orders.user_id = users.user_id
+where orders.total>1000;
+
+Какой SQL-запрос вернёт имена пользователей, которые заказали товар с названием 'Laptop'?
+Таблицы: 'users' (user_id, name),
+ 'orders' (order_id, user_id),
+ 'order_items' (order_id, product_id),
+ 'products' (product_id, name).
+
+select users.name
+ from users
+ join orders on orders.user_id = users.user_id
+ join order_items on order_items.order_id = orders.order_id
+ join products on products.product_id = order_items.product_id
+ where products.name = 'Laptop'
+
+ Какой SQL-запрос вернёт максимальную сумму заказа для каждого пользователя?
+ Таблицы: 'users' (user_id, name) и 'orders' (order_id, user_id, total).
+
+ select distinct u.name MAX(o.total) as max_total
+ from users u
+ join orders o on o.user_id = u.user_id
+ group by u.name
+
+
+ Какой SQL-запрос вернёт пользователей, которые сделали больше 5 заказов?
+ Таблицы: 'users' (user_id, name) и 'orders' (order_id, user_id).
+
+select u.name, count(o.order_id) as quantity_count
+from users u
+join orders o on o.user_id = u.user_id
+group by u.name
+having count(o.order_id)>5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
