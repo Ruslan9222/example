@@ -177,7 +177,13 @@ public class LiveCode {
 //    CATCH (ID, FISH_ID, DT, QUANTITY)
 //
 //    Необходимо вывести все наименования рыб, суммарный улов по которым на дату d менее n.
-//
+
+//    select f.name, count (c.quantity) as count_quantity
+//    from fish f
+//    join catch c on c.fish_id = f.id
+//    where dt = 'd'
+//    group by f.name
+//    having count(c.quantity)<n;
 //
 //
 //

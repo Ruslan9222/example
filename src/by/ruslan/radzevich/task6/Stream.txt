@@ -71,6 +71,9 @@ List<Order> orders = List.of(
     new Order(3, 200),
     new Order(2, 150)
 );
+  orders.stream()
+        .filter(o->o.amount>100)
+        .collect(Collector.groupingBy(o->o.customerId , Collector.summingInt(o1->o1.totalAmount))
 
 -----------
 Задача 9 — Сложное плоское преобразование с фильтрацией

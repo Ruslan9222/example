@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamsExample {
     public static void main(String[] args) {
@@ -177,7 +178,7 @@ public class StreamsExample {
         List<Integer> numbers4 = List.of(1, 2, 3, 4, 5);
         Integer reduce1 = numbers4.stream()
                 .filter(el -> el > 2)
-                .reduce((el, el1) -> el * el1)
+                .reduce((el1, el2)->el1*el2)
                 .orElse(1);
 
         System.out.println(reduce1);

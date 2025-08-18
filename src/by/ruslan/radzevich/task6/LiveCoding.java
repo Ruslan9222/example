@@ -1,6 +1,7 @@
 package by.ruslan.radzevich.task6;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -30,8 +31,9 @@ public class LiveCoding {
     List<String> strings = List.of("a1", "b2", "c3", "a4", "b5");
     List<String> b = strings.stream()
             .filter(el -> el.startsWith("b"))
-            .sorted((el1, el2) -> el2.compareTo(el1))
+//            .sorted((el1, el2) -> el2.compareTo(el1))
 //                .forEach(el-> System.out.println("el = " + el));
+            .sorted(Comparator.comparing(String::length).reversed())
             .toList();
         System.out.println("strings = "+b);
 
@@ -64,6 +66,14 @@ public class LiveCoding {
                 .collect(Collectors.groupingBy(el->el.city(), Collectors
                         .averagingDouble(el2-> el2.age())));
 //        System.out.println(user);
+        Map<String, List<String>> user2 = users.stream()
+                .collect(Collectors.groupingBy(
+                        User::city,
+                        Collectors.mapping(User::name, Collectors.toList())
+                ));
+        Map<String, List<User>> user3 = users.stream()
+                .collect(Collectors.groupingBy(User:: name));
+
 }
 
 record User(String name, String city, int age) {
