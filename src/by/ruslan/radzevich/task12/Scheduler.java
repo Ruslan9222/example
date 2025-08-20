@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Scheduler {
+
     private final Map<Integer, Runnable> scheduledMap = new HashMap<>();
 
     public static void main(String[] args) {

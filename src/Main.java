@@ -23,7 +23,7 @@ public class Main {
 //
         int b = (int) Stream.of(1,3,6,7)
                 .filter(a-> a >5)
-                .peek(a-> System.out.println(a))
+                .peek(System.out::println)
                 .toList().stream()
                 .peek(System.out::println)
                 .count();
