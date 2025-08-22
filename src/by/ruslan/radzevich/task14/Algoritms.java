@@ -1,26 +1,26 @@
 package by.ruslan.radzevich.task14;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Algoritms {
 
     private static int maxLengthOfSequenceOfOnesExceptZero(int[] arr) {
         // Максимальная длина допустимого окна
         int maxLen = 0;
-
         // Левый указатель окна
         int left = 0;
-
         // Количество нулей в текущем окне
         int zeroCount = 0;
-
         // Проходим по массиву правым указателем
         for (int right = 0; right < arr.length; right++) {
             // Если текущий элемент — 0, увеличиваем счётчик нулей
             if (arr[right] == 0) {
                 zeroCount++;
             }
-
             // Если нулей больше одного — окно недопустимо, сдвигаем левую границу
             while (zeroCount > 1) {
                 if (arr[left] == 0) {
@@ -28,12 +28,24 @@ public class Algoritms {
                 }
                 left++; // Сдвигаем левую границу
             }
-
             // Обновляем максимальную длину допустимого окна
             maxLen = Math.max(maxLen, right - left + 1);
         }
-
         return maxLen;
+    }
+
+    private static int[] findUnique(int[] array) {
+        return Arrays.stream(array) // создаём IntStream из массива
+                .boxed() // преобразуем в Stream<Integer>, чтобы работать с объектами
+                .collect(Collectors.groupingBy(
+                        Function.identity(), // группируем по значению (само число)
+                        Collectors.counting() // считаем количество повторений каждого числа
+                ))
+                .entrySet().stream() // превращаем Map в Stream<Map.Entry<Integer, Long>>
+                .filter(entry -> entry.getValue() == 1) // фильтруем только те, что встречаются один раз
+                .map(Map.Entry::getKey) // извлекаем ключи — уникальные числа
+                .mapToInt(Integer::intValue) // преобразуем обратно в IntStream
+                .toArray(); // собираем результат в массив int[]
     }
     public class NestedListPrinter {
         public static void main(String[] args) {
