@@ -11,6 +11,17 @@ public class StreamsExample {
     public static void main(String[] args) {
 
 
+        List<String> role = List.of("insurance_speсialist_ic",
+                "insurance_speсialist_cc",
+                "insurance_claim_speсialist_ic",
+                "insurance_claim_speсialist_cc",
+                "insurance_manager");
+         role.stream()
+                .map(String::toUpperCase)
+                 .forEach(System.out::println);
+
+
+
 //        Дан список строк. Вывести все строки длиной больше 5 символов.
 
         List<String> strings = List.of("apple", "banana", "pear", "pineapple", "kiwi");
@@ -178,7 +189,7 @@ public class StreamsExample {
         List<Integer> numbers4 = List.of(1, 2, 3, 4, 5);
         Integer reduce1 = numbers4.stream()
                 .filter(el -> el > 2)
-                .reduce((el1, el2)->el1*el2)
+                .reduce((el1, el2) -> el1 * el2)
                 .orElse(1);
 
         System.out.println(reduce1);
@@ -187,6 +198,7 @@ public class StreamsExample {
 //        элементов в списке. И потом найти все значения котрые больше среднего значения*/
 
     }
+
     List<Integer> list5 = List.of(1, 3, 6, 9, 11, 42, 27);
 
     private static List<Integer> list(List<Integer> list) {
@@ -201,6 +213,7 @@ public class StreamsExample {
 
 
     }
+
     public static boolean isPalindrome(String s) {
         if (s == null) return false;
 
