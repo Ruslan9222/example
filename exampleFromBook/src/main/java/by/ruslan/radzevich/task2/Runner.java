@@ -4,6 +4,7 @@ import by.ruslan.radzevich.utils.ScannerInterface;
 import by.ruslan.radzevich.utils.ScannerInterfaceImpl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Runner {
@@ -24,6 +25,7 @@ public class Runner {
         Runner runner = new Runner(algoritmicTask, scannerInterface);
         runner.run();
 
+
     }
 
     public void run() {
@@ -34,8 +36,9 @@ public class Runner {
                     1 - Even Numbers
                     2 - Split Even And Odd
                     3 - Max And Min Numbers
-                    4 - Compare passwords
-                    5 - Sum and product
+                    4 - Check For Divisibility 3 or 9
+                    5 - Check For Divisibility 5 and 7
+                    6 - Prime Numbers
                     0 - Exit
                     """);
             int choice = scannerInterface.getInteger();
@@ -46,13 +49,27 @@ public class Runner {
                     System.out.println("evenNumbers = " + integers);
                 }
                 case 2 -> algoritmicTask.splitEvenAndOdd();
+                case 3 -> algoritmicTask.maxAndMinNumbers();
+                case 4 -> algoritmicTask.checkForDivisibility3Or9();
+                case 5 -> {
+                    List<Integer> input = scannerInterface.getIntegersList();
+                    Map<String, List<Integer>> result = algoritmicTask.checkForDivisibility5And7(input);
+                    System.out.println("Is divisible by both 5 and 7 " + result.get("divisible"));
+                    System.out.println("No divisibility " + result.get("NoDivisible"));
+                }
+                case 6 -> {
+                    List<Integer> input = scannerInterface.getIntegersList();
+                    List<Integer> integers = algoritmicTask.primeNumbers(input);
+                    System.out.println("Prime numbers " + integers);
+                }
                 case 0 -> {
                     System.out.println("Exiting...");
                     return;
                 }
-                case 3 -> algoritmicTask.maxAndMinNumbers();
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
     }
+
+
 }
