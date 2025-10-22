@@ -1,31 +1,32 @@
-package by.ruslan.radzevich.exercisesFromChapterOne.task1;
+package by.ruslan.radzevich.task2;
 
 import by.ruslan.radzevich.utils.ScannerInterface;
 import by.ruslan.radzevich.utils.ScannerInterfaceImpl;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Runner {
 
-    private final ScannerExample scannerExample;
+    private final AlgoritmicTask algoritmicTask;
     private final ScannerInterface scannerInterface;
 
-    public Runner(ScannerExample scannerExample, ScannerInterface scannerInterface) {
-        this.scannerExample = scannerExample;
+    public Runner(AlgoritmicTask algoritmicTask, ScannerInterface scannerInterface) {
+        this.algoritmicTask = algoritmicTask;
         this.scannerInterface = scannerInterface;
     }
 
-    public static void main(String[] args) {
-        Scanner sharedScanner = new Scanner(System.in);
-        ScannerInterface scannerInterface = new ScannerInterfaceImpl(sharedScanner);
-        ScannerExample scanner = new ScannerExampleImpl(scannerInterface);
-        Runner runner = new Runner(scanner, scannerInterface);
-        runner.run();
 
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ScannerInterface scannerInterface = new ScannerInterfaceImpl(scanner);
+        AlgoritmicTask algoritmicTask = new AlgoritmicTask(scannerInterface);
+        Runner runner = new Runner(algoritmicTask, scannerInterface);
+        runner.run();
 
     }
 
-    void run() {
+    public void run() {
 
         while (true) {
             System.out.println("""
@@ -37,21 +38,19 @@ public class Runner {
                     5 - Sum and product
                     0 - Exit
                     """);
-
             int choice = scannerInterface.getInteger();
-            scannerInterface.getString();
 
             switch (choice) {
-                case 1 -> scannerExample.reverseName();
-                case 2 -> scannerExample.name();
-                case 3 -> scannerExample.randomNumbers();
-                case 4 -> scannerExample.passwordMath();
-                case 5 -> scannerExample.sum();
+                case 1 -> {
+                    List<Integer> integers = algoritmicTask.evenNumbers();
+                    System.out.println("evenNumbers = " + integers);
+                }
+                case 2 -> algoritmicTask.splitEvenAndOdd();
                 case 0 -> {
                     System.out.println("Exiting...");
                     return;
                 }
-                default -> System.out.println("Invalid choice");
+                default -> System.out.println("Invalid option. Try again.");
             }
         }
     }

@@ -1,7 +1,6 @@
-package by.ruslan.radzevich.exercisesFromChapterOne.task1;
+package by.ruslan.radzevich.utils;
 
 import java.util.Scanner;
-
 public class ScannerInterfaceImpl implements ScannerInterface {
 
     private final Scanner scanner;
@@ -12,7 +11,6 @@ public class ScannerInterfaceImpl implements ScannerInterface {
 
     @Override
     public Integer getInteger() {
-
         System.out.println("Enter the number");
         return scanner.nextInt();
     }

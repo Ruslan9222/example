@@ -1,4 +1,4 @@
-package by.ruslan.radzevich.exercisesFromChapterOne.task1;
+package by.ruslan.radzevich.utils;
 
 public interface ScannerInterface {
 

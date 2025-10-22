@@ -1,5 +1,7 @@
 package by.ruslan.radzevich.exercisesFromChapterOne.task1;
 
+import by.ruslan.radzevich.utils.ScannerInterface;
+
 import java.time.LocalDateTime;
 import java.util.Random;
 
@@ -16,8 +18,6 @@ public class ScannerExampleImpl implements ScannerExample, Runnable {
 
     @Override
     public void name() {
-
-
         this.name = scannerInterface.getString();
         LocalDateTime start = LocalDateTime.now();
         System.out.println("Input received at: " + start);
