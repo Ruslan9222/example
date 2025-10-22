@@ -31,9 +31,9 @@ public class Runner {
         while (true) {
             System.out.println("""
                     Choose an option:
-                    1 - Reverse name
-                    2 - Print name with thread
-                    3 - Generate random numbers
+                    1 - Even Numbers
+                    2 - Split Even And Odd
+                    3 - Max And Min Numbers
                     4 - Compare passwords
                     5 - Sum and product
                     0 - Exit
@@ -50,6 +50,7 @@ public class Runner {
                     System.out.println("Exiting...");
                     return;
                 }
+                case 3 -> algoritmicTask.maxAndMinNumbers();
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
