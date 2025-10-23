@@ -39,6 +39,8 @@ public class Runner {
                     4 - Check For Divisibility 3 or 9
                     5 - Check For Divisibility 5 and 7
                     6 - Prime Numbers
+                    7 - Ascending And Descending Sort
+                    8 - Ascending And Descending Sort 2
                     0 - Exit
                     """);
             int choice = scannerInterface.getInteger();
