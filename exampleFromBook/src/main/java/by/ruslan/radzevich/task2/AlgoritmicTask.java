@@ -16,4 +16,7 @@ public interface AlgoritmicTask {
     Map<String, List<Integer>> checkForDivisibility5And7(List<Integer> numbers);
 
     List<Integer> primeNumbers(List<Integer> numbers);
+
+    void ascendingAndDescendingSort();
+    Map<String, List<Integer>> ascendingAndDescendingSort2(List<Integer> numbers);
 }

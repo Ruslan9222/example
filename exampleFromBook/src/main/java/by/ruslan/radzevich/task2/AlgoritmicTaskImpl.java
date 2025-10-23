@@ -3,6 +3,7 @@ package by.ruslan.radzevich.task2;
 import by.ruslan.radzevich.utils.ScannerInterface;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,6 +105,46 @@ public class AlgoritmicTaskImpl implements AlgoritmicTask {
             }
         }
         return primes;
+    }
+
+    @Override
+    public void ascendingAndDescendingSort() {
+        int count = scannerInterface.getInteger();
+
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            numbers.add(scannerInterface.getInteger());
+        }
+
+        List<Integer> ascendingSort = new ArrayList<>(numbers);
+        List<Integer> descendingSort = new ArrayList<>(numbers);
+
+        Collections.sort(ascendingSort);
+        descendingSort.sort(Collections.reverseOrder());
+
+        Map<String, List<Integer>> result = new HashMap<>();
+        result.put("ascendingSort", ascendingSort);
+        result.put("descendingSort", descendingSort);
+        System.out.println("Ascending sort " + result.get("ascendingSort"));
+        System.out.println("Descending sort " + result.get("descendingSort"));
+    }
+
+    @Override
+    public Map<String, List<Integer>> ascendingAndDescendingSort2(List<Integer> numbers) {
+
+        List<Integer> ascendingSort = new ArrayList<>(numbers);
+        List<Integer> descendingSort = new ArrayList<>(numbers);
+
+        Collections.sort(ascendingSort);
+        descendingSort.sort(Collections.reverseOrder());
+
+        Map<String, List<Integer>> result = new HashMap<>();
+        result.put("ascendingSort", ascendingSort);
+        result.put("descendingSort", descendingSort);
+        System.out.println("Ascending sort " + result.get("ascendingSort"));
+        System.out.println("Descending sort " + result.get("descendingSort"));
+
+        return result;
     }
 
     private boolean isPrime(int number) {

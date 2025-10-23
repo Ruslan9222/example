@@ -62,6 +62,15 @@ public class Runner {
                     List<Integer> integers = algoritmicTaskImpl.primeNumbers(input);
                     System.out.println("Prime numbers " + integers);
                 }
+                case 7 -> algoritmicTaskImpl.ascendingAndDescendingSort();
+
+                case 8 -> {
+                    List<Integer> input = scannerInterface.getIntegersList();
+                    Map<String, List<Integer>> result = algoritmicTaskImpl.ascendingAndDescendingSort2(input);
+                    System.out.println("Ascending sort " + result.get("ascendingSort"));
+                    System.out.println("Descending sort " + result.get("descendingSort"));
+
+                }
                 case 0 -> {
                     System.out.println("Exiting...");
                     return;
@@ -70,6 +79,5 @@ public class Runner {
             }
         }
     }
-
 
 }
