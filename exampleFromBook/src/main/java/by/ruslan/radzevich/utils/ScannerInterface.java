@@ -10,4 +10,6 @@ public interface ScannerInterface {
 
     List<Integer> getIntegersList();
 
+    char[] getChar();
+
 }

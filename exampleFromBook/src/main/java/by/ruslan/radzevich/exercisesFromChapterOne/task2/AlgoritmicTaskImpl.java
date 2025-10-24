@@ -1,4 +1,4 @@
-package by.ruslan.radzevich.task2;
+package by.ruslan.radzevich.exercisesFromChapterOne.task2;
 
 import by.ruslan.radzevich.utils.ScannerInterface;
 

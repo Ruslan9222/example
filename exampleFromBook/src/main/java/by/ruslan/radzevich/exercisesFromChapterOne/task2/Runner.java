@@ -1,4 +1,4 @@
-package by.ruslan.radzevich.task2;
+package by.ruslan.radzevich.exercisesFromChapterOne.task2;
 
 import by.ruslan.radzevich.utils.ScannerInterface;
 import by.ruslan.radzevich.utils.ScannerInterfaceImpl;
@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 public class Runner {
 
-    private final AlgoritmicTaskImpl algoritmicTaskImpl;
+    private final AlgoritmicTask algoritmicTask;
     private final ScannerInterface scannerInterface;
 
-    public Runner(AlgoritmicTaskImpl algoritmicTaskImpl, ScannerInterface scannerInterface) {
-        this.algoritmicTaskImpl = algoritmicTaskImpl;
+    public Runner(AlgoritmicTask algoritmicTask, ScannerInterface scannerInterface) {
+        this.algoritmicTask = algoritmicTask;
         this.scannerInterface = scannerInterface;
     }
 
@@ -21,8 +21,8 @@ public class Runner {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ScannerInterface scannerInterface = new ScannerInterfaceImpl(scanner);
-        AlgoritmicTaskImpl algoritmicTaskImpl = new AlgoritmicTaskImpl(scannerInterface);
-        Runner runner = new Runner(algoritmicTaskImpl, scannerInterface);
+        AlgoritmicTask algoritmicTask = new AlgoritmicTaskImpl(scannerInterface);
+        Runner runner = new Runner(algoritmicTask, scannerInterface);
         runner.run();
 
 
@@ -47,28 +47,28 @@ public class Runner {
 
             switch (choice) {
                 case 1 -> {
-                    List<Integer> integers = algoritmicTaskImpl.evenNumbers();
+                    List<Integer> integers = algoritmicTask.evenNumbers();
                     System.out.println("evenNumbers = " + integers);
                 }
-                case 2 -> algoritmicTaskImpl.splitEvenAndOdd();
-                case 3 -> algoritmicTaskImpl.maxAndMinNumbers();
-                case 4 -> algoritmicTaskImpl.checkForDivisibility3Or9();
+                case 2 -> algoritmicTask.splitEvenAndOdd();
+                case 3 -> algoritmicTask.maxAndMinNumbers();
+                case 4 -> algoritmicTask.checkForDivisibility3Or9();
                 case 5 -> {
                     List<Integer> input = scannerInterface.getIntegersList();
-                    Map<String, List<Integer>> result = algoritmicTaskImpl.checkForDivisibility5And7(input);
+                    Map<String, List<Integer>> result = algoritmicTask.checkForDivisibility5And7(input);
                     System.out.println("Is divisible by both 5 and 7 " + result.get("divisible"));
                     System.out.println("No divisibility " + result.get("NoDivisible"));
                 }
                 case 6 -> {
                     List<Integer> input = scannerInterface.getIntegersList();
-                    List<Integer> integers = algoritmicTaskImpl.primeNumbers(input);
+                    List<Integer> integers = algoritmicTask.primeNumbers(input);
                     System.out.println("Prime numbers " + integers);
                 }
-                case 7 -> algoritmicTaskImpl.ascendingAndDescendingSort();
+                case 7 -> algoritmicTask.ascendingAndDescendingSort();
 
                 case 8 -> {
                     List<Integer> input = scannerInterface.getIntegersList();
-                    Map<String, List<Integer>> result = algoritmicTaskImpl.ascendingAndDescendingSort2(input);
+                    Map<String, List<Integer>> result = algoritmicTask.ascendingAndDescendingSort2(input);
                     System.out.println("Ascending sort " + result.get("ascendingSort"));
                     System.out.println("Descending sort " + result.get("descendingSort"));
 

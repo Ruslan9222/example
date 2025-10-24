@@ -1,4 +1,4 @@
-package by.ruslan.radzevich.task2;
+package by.ruslan.radzevich.exercisesFromChapterOne.task2;
 
 import java.util.List;
 import java.util.Map;

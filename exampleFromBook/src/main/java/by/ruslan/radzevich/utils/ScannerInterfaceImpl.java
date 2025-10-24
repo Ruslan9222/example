@@ -14,8 +14,17 @@ public class ScannerInterfaceImpl implements ScannerInterface {
 
     @Override
     public Integer getInteger() {
-        System.out.println("Enter the number");
-        return scanner.nextInt();
+        while (true) {
+            System.out.print("Введите целое число: ");
+            if (scanner.hasNextInt()) {
+                int value = scanner.nextInt();
+                scanner.nextLine();
+                return value;
+            } else {
+                System.out.println("Ошибка: введите корректное целое число.");
+                scanner.nextLine();
+            }
+        }
     }
 
     @Override
@@ -39,5 +48,10 @@ public class ScannerInterfaceImpl implements ScannerInterface {
         return input;
     }
 
-
+    @Override
+    public char[] getChar() {
+        System.out.println("Enter the char");
+        String s = scanner.nextLine();
+        return s.toCharArray();
+    }
 }
