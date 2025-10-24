@@ -32,7 +32,7 @@ public class Runner {
             System.out.println("""
                     Choose an option:
                     1 - Even Numbers
-                    
+                    2 - Max And Min Numbers For Length
                     0 - Exit
                     """);
             int chose = scannerInterface.getInteger();
@@ -41,6 +41,7 @@ public class Runner {
                     char[] input = scannerInterface.getChar();
                     algoritmicTask.findAndPrintShortestAndLongest(input);
                 }
+                case 2-> algoritmicTask.maxAndMinNumbersForLength();
                 case 0 -> {
                     System.out.println("Exiting...");
                     return;
