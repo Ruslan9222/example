@@ -2,11 +2,60 @@
 Задание: Вывести имена и зарплаты сотрудников из отдела Sales, у которых зарплата выше средней по компании.
 Отсортировать по убыванию зарплаты.
 
+select name, salary
+from employees
+where department = 'Sales'
+and salary>(select AVG(salary)
+from employees)
+order by salary desc
+
 
 Таблица: orders(id, customer_id, order_date, total_amount)
 Задание: Для каждого клиента вывести общее количество заказов и суммарную сумму покупок.
 Отобразить только тех, кто сделал более 5 заказов.
 
+select id, count(*) as count,
+sum(total_amount) as sum
+from orders
+group by customer_id)
+having count(*)>5
+
 Таблицы: products(id, name, category_id)
 categories(id, name)
 Задание: Вывести список всех продуктов с указанием названия категории. Отсортировать по имени категории.
+
+select p.name, c.name
+from products p
+join categories c on
+c.id = p.category_id
+order by c.name asc
+
+Таблица: orders(id, customer_id, order_date, total_amount)
+Условие: Вывести для каждого клиента его самый дорогой заказ (сумма и дата).
+
+select customer_id, order_date, total_amount
+from orders
+where total_amount = (select MAX(total_amount)
+from orders
+where customer_id = orders.customer_id)
+
+
+Таблицы:
+products(id, name, category_id)
+categories(id, name)
+Условие: Вывести название категории и количество продуктов в ней. Отсортировать по убыванию количества.
+
+select c.name, count(p.id) as countProducts
+from products p
+join categories c on c.id = p.category_id
+group by c.name
+order by count(p.id) desc
+
+
+Таблица: orders(id, customer_id, order_date, total_amount)
+Условие: Вывести дату и среднюю сумму заказов на эту дату. Отсортировать по дате.
+
+select order_date, avg(total_amount) as avg_amount
+from orders
+group by order_date
+order by order_date asc
