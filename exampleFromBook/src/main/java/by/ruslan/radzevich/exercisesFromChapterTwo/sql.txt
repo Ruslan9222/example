@@ -59,3 +59,112 @@ select order_date, avg(total_amount) as avg_amount
 from orders
 group by order_date
 order by order_date asc
+
+
+Таблицы:
+customers(id, name)
+orders(id, customer_id, order_date, total_amount)
+Условие: Выведите имена клиентов, которые сделали более 3 заказов в течение последних 30 дней,
+отсортировав по количеству заказов по убыванию.
+
+select c.name, count(*) as count
+from customers c
+join orders o on o.customer_id = c.id
+group by c.name
+having count(*)>3
+order by count(*) desc
+
+select c.name, count(*) as order_count
+from customers c
+join orders o on o.customer_id = c.id
+where o.order_date >= current_date - interval '30 day'
+group by c.name
+having count(*) > 3
+order by order_count desc;
+
+Таблицы:
+employees(id, name, department_id, salary)
+departments(id, name)
+Условие: Для каждого отдела выведите имя сотрудника с максимальной зарплатой. Если таких несколько — выведите всех.
+
+select e.name, e.salary, d.name AS department_name
+from employees e
+join department d on e.department_id = d.id
+where e.salary = (
+select max(salary)
+from employees
+where department_id = e.department_id)
+
+Таблица:
+tasks(id, title, status, due_date)
+Условие: Обновите статус всех задач, у которых срок выполнения истёк и статус всё ещё "в процессе", на "просрочено".
+
+update tasks
+set status = 'просрочено'
+where status = 'в процессе'
+  and due_date < CURRENT_DATE;
+
+Таблицы:
+orders(id, customer_id, order_date)
+order_items(id, order_id, product_id, quantity, price_per_unit)
+Условие: Рассчитайте среднюю сумму заказа по каждому клиенту, учитывая все позиции в заказе.
+
+
+Таблицы:
+customers(id, name)
+orders(id, customer_id, order_date, total_amount)
+Условие: Выведите имя клиента и дату его последнего заказа. Если заказов нет — не включайте клиента в результат.
+
+select c.name, max(o.order_date) as last_order_date
+from customers c
+right join orders o on c.id = o.customer_id
+group by c.name
+
+
+Таблицы:
+employees(id, name, department_id, salary)
+departments(id, name)
+Условие: Выведите название отдела и среднюю зарплату сотрудников в нём. Отсортируйте по убыванию средней зарплаты.
+
+select d.name, e.salary, avg(e.salary) as avg_salary
+from employees e
+join departments d on e.department_id = d.id
+group by d.name
+order by avg_salary desc
+
+
+Таблицы:
+employees(id, name)
+projects(id, name)
+employee_projects(employee_id, project_id)
+Условие: Выведите имена сотрудников, которые не участвуют ни в одном проекте.
+
+SELECT e.name
+FROM employees e
+LEFT JOIN employee_projects ep ON e.id = ep.employee_id
+WHERE ep.project_id IS NULL;
+
+Таблицы:
+products(id, name)
+order_items(id, order_id, product_id, quantity)
+Условие: Выведите названия трёх товаров с наибольшим суммарным количеством продаж.
+
+select p.name, sum(o.quantity) as sum_quantity
+from products p
+join order_items o on p.id = o.product_id
+group by p.name
+order by sum_quantity desc
+limit 3
+
+Таблицы:
+calendar(date)
+orders(id, order_date)
+Условие: Выведите даты из таблицы calendar, в которые не было ни одного заказа.
+
+select c.date
+from calendar c
+where not exists (
+  select 1
+  from orders o
+  where o.order_date = c.date
+)
