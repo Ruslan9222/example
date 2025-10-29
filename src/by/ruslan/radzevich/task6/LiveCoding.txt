@@ -8,7 +8,7 @@ List<List<String>> listOflists = List.of(List.of("S4", "S5", "S6"),
 List.of("S4", "S5", "S6"),
 List.of("S7", "S8", "S9"));
 
-  listOflists.stream().flatMap(el->el.strem())
+  listOflists.stream().flatMap(el->el.stream())
   .collect(Collector.joining(", "))
 
 //////////////

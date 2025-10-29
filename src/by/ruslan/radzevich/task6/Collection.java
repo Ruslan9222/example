@@ -1,5 +1,6 @@
 package by.ruslan.radzevich.task6;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -25,6 +26,7 @@ public class Collection {
                 .map(el -> el.toUpperCase())
                 .sorted((el1, el2) -> Integer.compare(el1.length(), el2.length()))// по длине строки
                 .sorted((el1,el2)->el2.compareTo(el1)) // это вывод записей в алфавитном порядке
+                .sorted(Comparator.comparing(String::length).reversed())
                 .toList());
 
 
@@ -44,6 +46,7 @@ public class Collection {
         System.out.println(people.stream()
 //                .sorted((age1, age2) -> Integer.compare(age2.age, age1.age))
                 .sorted((el1, el2) -> el1.name().compareTo(el2.name()))
+                        .sorted(Comparator.comparing(el->el.name))
                 .toList());
 
 
