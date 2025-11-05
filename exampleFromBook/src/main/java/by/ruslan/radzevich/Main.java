@@ -1,10 +1,36 @@
 package by.ruslan.radzevich;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Exchanger;
+import java.util.concurrent.Phaser;
+import java.util.concurrent.Semaphore;
 
 public class Main {
+
+    private Semaphore semaphore = new Semaphore(5);
+    private Phaser phaser = new Phaser();
+    private CountDownLatch countDownLatch = new CountDownLatch(5);
+    private CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
+    private Exchanger exchanger = new Exchanger<>();
+    private BigDecimal bigDecimal = new BigDecimal("0");
+    public BigDecimal getBigDecimal(){
+        return bigDecimal;
+    }
+    public void setBigDecimal(BigDecimal bigDecimal){
+       this.bigDecimal = bigDecimal;
+    }
+
     public static void main(String[] args) {
+
+        Main main = new Main();
+        main.setBigDecimal(new BigDecimal("123.45"));
+        System.out.println(main.getBigDecimal());
+
+
             Map<SomeKey, String> test = new HashMap<>();
 
             SomeKey key1 = new SomeKey("firstKey");
